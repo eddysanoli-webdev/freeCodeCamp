@@ -1,11 +1,52 @@
-// Import partials
+// ======================
+// PARTIALS
+// ======================
+
 @import './resets';
 @import './variables';
+
+
+// ======================
+// FUNCTIONS
+// ======================
 
 // Function: Retrieve the font weight without using "map-get"
 @function weight($weight-name) {
     @return map-get($font-weights, $weight-name);
 }
+
+
+// ======================
+// MIXINS
+// ======================
+
+// Mixin: Center with Flexbox
+@mixin flexCenter($direction) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: $direction;
+}
+
+// Mixin: Theme for the website (light/dark)
+@mixin theme($light-theme: true) {
+    @if $light-theme {
+
+        // Lighten the background color and darken the text color
+        background: lighten($primary-color, 100%);
+        color: darken($text-color, 100%);
+    }
+}
+
+@mixin mobile() {
+    @media (max-width: $mobile) {
+        @content 
+    }
+}
+
+// ======================
+// SELECTORS
+// ======================
 
 body {
     background-color: $primary-color;
@@ -13,6 +54,9 @@ body {
 }
 
 .main {
+    // Display flex: Center content
+    @include flexCenter(row);
+
     width: 80%;
     margin: 0 auto;
 
@@ -28,4 +72,17 @@ body {
             color: pink;
         }
     }
+
+    // Change layout depending on the screen size
+    // (Adds a media query with the content inside the brackets as the content for the query)
+    @include mobile {
+        flex-direction: column;
+    }
+}
+
+// If true, the "lighten" and "darken" styles inside the mixin will be applied
+// If false, no styles will be added, leaving the "light" class empty. This causes the
+// compiler to ignore the class when compiling the SCSS file.
+.light {
+    @include theme($light-theme: false);
 }
