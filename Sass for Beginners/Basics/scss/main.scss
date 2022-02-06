@@ -38,6 +38,7 @@
     }
 }
 
+// Mixin: Change attributes based on screen size
 @mixin mobile() {
     @media (max-width: $mobile) {
         @content 
@@ -57,12 +58,12 @@ body {
     // Display flex: Center content
     @include flexCenter(row);
 
-    width: 80%;
+    width: 80% - 10%;
     margin: 0 auto;
 
     // You can use & as a synonym of the parent (& = .main)
     // To include ".main_paragraph" inside the parent we must use interpolation)
-    #{&}_paragraph {
+    #{&}_paragraph1 {
 
         // Get font weight from map (key value pair)
         font-weight: weight(bold);
@@ -70,6 +71,17 @@ body {
         // Edit the "hover" attribute from the parent
         &:hover {
             color: pink;
+        }
+    }
+
+    #{&}_paragraph2 {
+
+        // Inherit all the styles of paragraph 1 onto paragraph 2
+        @extend .main_paragraph1;
+
+        // Change the hover behavior of the paragraph
+        &:hover {
+            color: $accent-color;
         }
     }
 

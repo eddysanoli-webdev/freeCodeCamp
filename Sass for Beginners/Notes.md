@@ -35,6 +35,7 @@ Install the extension and then add the following section inside the configuratio
 - Interpolation: When using "&" as a synomym for the parent class, we can surround it by "#{}" to interpolate and make it include not only the name of the parent, but all of the parent classes.
 - Partials: SCSS files that start with an underscore (_). These will be ignored by the compiler and will not generate a CSS file. They are useful as a way to modularize your code. Each partial can contain a small reusable snippet of CSS.
 - Mixins: Allows to insert repeatable snippets of CSS. Its also able to use arguments in a similar way to functions.
+- Operations: With SASS, operations dont need to be put inside a "calc" statement. Just add the operation itself. However, types cannot be mixed, so "40% - 300px" is not valid.
 
 ### CSS
 
@@ -42,3 +43,4 @@ Install the extension and then add the following section inside the configuratio
 - Reset: A set of CSS rules that reset the styling of all HTML elements to a consistent baseline. Put at the top to make sure that at the beggining, all elements dont have a padding, margin or anything else. Basically used to remove the default settings added by HTML.
 - *: Universal selector. Selects any and all types of elements in an element. Its similar to saying "all elements inside the current parent".
 - lighten: Lightens a color by a certain percentage.
+- calc(): Multiply, add, subtract or divide two measurements in CSS. For example: 100% - 400px.
