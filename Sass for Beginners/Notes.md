@@ -44,3 +44,6 @@ Install the extension and then add the following section inside the configuratio
 - *: Universal selector. Selects any and all types of elements in an element. Its similar to saying "all elements inside the current parent".
 - lighten: Lightens a color by a certain percentage.
 - calc(): Multiply, add, subtract or divide two measurements in CSS. For example: 100% - 400px.
+- text-decoration: No underline, overline or others decorating the text.
+- ::before: Allows the user to add elements directly before or after a specific element.
+- column-rule: Create a line separator between columns.

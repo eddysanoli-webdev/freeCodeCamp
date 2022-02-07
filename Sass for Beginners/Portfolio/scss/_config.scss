@@ -1,0 +1,48 @@
+$primary-color: #272727;
+$secondary-color: #ff652f;
+
+// Standard resets
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+// Mixin: Slow ease of half a second
+@mixin transition-ease {
+    transition: all 0.5s ease-in-out;
+}
+
+// Function: Generate appropriate color for text
+@function set-text-color($color) {
+
+    // If background color is light (lightness is higher than 40%)
+    // return a dark font color. Else, return a light color.
+    @if (lightness($color) > 40%) {
+        @return black;
+    }
+    @else {
+        @return white;
+    }
+}
+
+// Mixin: Medium screen size
+@mixin media-md {
+    @media screen and (min-width: 769px) {
+        @content;
+    }
+}
+
+// Mixin: Large screen size
+@mixin media-lg {
+    @media screen and (min-width: 1024px) {
+        @content;
+    }
+}
+
+// Mixin: Extra large screen size
+@mixin media-xl {
+    @media screen and (min-width: 1600px) {
+        @content;
+    }
+}

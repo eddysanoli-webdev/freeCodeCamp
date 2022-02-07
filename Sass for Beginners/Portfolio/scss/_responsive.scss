@@ -1,0 +1,104 @@
+// ========================
+// MEDIUM SCREENS
+// ========================
+
+@include media-md {
+    .menu-btn {
+        visibility: hidden;
+    }
+
+
+    .nav {
+        visibility: visible;
+
+        .menu-nav {
+            display: block;
+
+            // Return navbar back to the top of the page
+            transform: translateY(0);
+
+            height: 100%;
+            background: transparent;
+            text-align: right;
+
+            &__item {
+                display: inline;
+                padding-right: 1.5rem;
+
+                // Reduce the size of each menu text item
+                a {
+                    font-size: 1.5rem;
+                }
+            }
+
+            &_link {
+                font-size: 1.5rem;
+            }
+        }
+    }
+
+    .about__bio {
+        font-size: 1.5rem;
+    }
+
+    .projects {
+
+        // Prevent the image from zooming in too much
+        &__bio-image {
+            height: 40vh;
+        }
+
+        // 2 Columns for medium sizes
+        &__items {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        // Enlarge the "my projects" text
+        .text-secondary {
+            font-size: 3rem;
+        }
+    }
+
+    // Medium column
+    .contact__list {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+// ========================
+// LARGE SCREENS
+// ========================
+
+@include media-lg {
+
+    // Three column layout for projects
+    .projects {
+
+        // 2 Columns for medium sizes
+        &__items {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        // Enlarge the "My Projects" text
+        .text-secondary {
+            font-size: 3,5rem;
+        }
+    }
+
+    // Three column layout for contact info
+    .contact__list {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+// ========================
+// EXTRA LARGE SCREENS
+// ========================
+
+@include media-xl {
+
+    // Prevent excesive zoom in on larger screens
+    .projects__bio-image {
+        height: 50vh;
+    }
+}

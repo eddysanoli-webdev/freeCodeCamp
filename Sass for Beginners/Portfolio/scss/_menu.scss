@@ -1,0 +1,156 @@
+.menu-btn {
+    position: absolute;
+    z-index: 1;
+    right: 1rem;
+    top: 1rem;
+    height: 20px;
+    width: 28px;
+
+    // When hovering over, cursor changes
+    cursor: pointer;
+
+    // Include the transition ease
+    @include transition-ease;
+
+    &__burger {
+        position: absolute;
+        right: 0;
+        top: 0.5rem;
+
+        // Definition of burger middle line
+        width: 28px;
+        height: 3px;
+        background: set-text-color($primary-color);
+
+        // Include transition ease
+        @include transition-ease;
+
+        // Burger top line
+        &::before {
+            content: '';
+            position: absolute;
+            top: -8px;
+            width: 28px;
+            height: 3px;
+            background: set-text-color($primary-color);
+            @include transition-ease;
+        }
+
+        // Burger bottom line
+        &::after {
+            content: '';
+            position: absolute;
+            top: 8px;
+            width: 20px;
+            height: 3px;
+            background: set-text-color($primary-color);
+            @include transition-ease;
+        }
+
+        // Animation after clicking
+        &.open {
+            transform: rotate(360deg);
+            background: transparent;
+
+            // Top line:
+            // - Rotate 45 degrees
+            // - Move 5px to the left
+            // - Move 8px down (Center it vertically)
+            &::before {
+                transform: rotate(45deg) translate(5px, 8px);
+            }
+
+            // Bottom line:
+            // (He played with the numbers until he got it right)
+            &::after {
+                width: 28px;
+                transform: rotate(-45deg) translate(3px, -7px);
+            }
+
+
+        }
+    }
+}
+
+
+// Menu: Show when clicking the burger
+.nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    opacity: 0.98;
+    visibility: hidden;
+
+    // Show the navbar after clicking on the burger
+    &.open {
+        visibility: visible;
+    }
+
+    .menu-nav {
+        display: flex;
+
+        // Wrap around if the device has a weird width
+        flex-flow: column wrap;
+
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        overflow: hidden;
+        background: $primary-color;
+        list-style-type: none;
+        padding-right: 1rem;
+
+        // The position of all the text in the menu will begin off the page at the top
+        transform: translateY(-100%);
+
+        // Ease all movements
+        @include transition-ease;
+
+        // Translate all the text back into the screen
+        &.open {
+            transform: translateY(0);
+        }
+
+        // Menu items
+        // (All items start off the right side of the page)
+        &__item {
+            transform: translateX(100vw);
+            @include transition-ease;
+
+            // Return elements back to the screen
+            &.open {
+                transform: translateX(0vw);
+            }
+
+            // "a" tag inside all elements with the class active
+            &.active > a {
+                color: $secondary-color;
+            }
+        }
+
+
+        &__link {
+            display: inline-block;
+            font-size: 2rem;
+            text-transform: uppercase;
+            padding: 2rem 0;
+            font-weight: 300;
+            @include transition-ease;
+
+            &:hover {
+                color: $secondary-color;
+            }
+        }
+    }
+}
+
+// For loop, to adjust the animation for each link
+@for $i from 1 through 4 {
+
+    // To use the variable $i inside the function, we need to use interpolation.
+    // Inside the attribute itself the variable CAN be used by itself
+    .menu-nav__item:nth-child(#{$i}) {
+        transition-duration: ($i * 0.1s) + 0.6s;
+    }
+}
