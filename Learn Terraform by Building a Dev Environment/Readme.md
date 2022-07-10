@@ -41,3 +41,15 @@ terraform apply -replace aws_instance.dev_node
 ```
 
 This applies any changes and forces terraform to regenerate the state for our `aws_instance`.
+
+### Terraform Variables
+
+If you declare an inline variable in your script as an input variable, you will have to add a default value for it, or terraform will ask for it when doing any terraform command. If you don't want this, you can create a `.tfvars` file whose declarations take precedence over inline variables.
+
+If for some reason you want to override even the `.tfvars` file, you can do it with the CLI using the following flag:
+
+```bash
+# Example specific to the "host_os" variable
+# - command = apply, plan, destroy, console, etc
+terraform command -var="host_os=unix"
+```

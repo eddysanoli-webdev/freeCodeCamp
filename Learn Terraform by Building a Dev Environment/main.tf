@@ -201,7 +201,7 @@ resource "aws_instance" "dev_node" {
         # Feed the template all the required variables
         # (NOTE: You can use the self keyword to get the values from the parent
         #  resource that contains the provisioner)
-        command = templatefile("windows-ssh-config.tpl", {
+        command = templatefile("${var.host_os}-ssh-config.tpl", {
             hostname = self.public_ip,
             user = "ubuntu",
 
