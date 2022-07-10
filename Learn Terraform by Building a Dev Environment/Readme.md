@@ -8,6 +8,8 @@
 - `terraform show`: Show ALL of the changes made (The info for all states).
 - `terraform destroy`: Destroy anything that we have created (Also can be invoked using `terraform apply -destroy`). Use `terraform destroy -auto-approve` to not display a dialog asking for confirmation.
 - `terraform fmt`: Correct any inconsistencies found in the `.tf` files.
+- `terraform apply -refresh-only`: If we don't want to be forced to destroy our terraform deployment and then re-apply to make the output changes visible, you can add the `-refresh-only` tag to make terraform reload the outputs.
+- `terraform output`: Display the outputs that the current terraform deployment has.
 
 ### State
 
@@ -53,3 +55,7 @@ If for some reason you want to override even the `.tfvars` file, you can do it w
 # - command = apply, plan, destroy, console, etc
 terraform command -var="host_os=unix"
 ```
+
+### Outputs
+
+We've been manually finding the IP address of our instance by checking the terraform state. Thats very inefficient, so we are going to add a script that prints out the data we need.
