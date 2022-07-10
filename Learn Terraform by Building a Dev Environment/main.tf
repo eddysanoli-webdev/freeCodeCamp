@@ -210,13 +210,10 @@ resource "aws_instance" "dev_node" {
         })
 
         # Interpreter: Tells the provisioner what it needs to use to 
-        # interpret our script (Defaults to bash). In this case, since
-        # we are on windows we use the following (each part of a command
-        # is a list element)
-        interpreter = ["Powershell", "-Command"]
-
-        # For linux
-        # interpreter = ["bash", "-c"]
+        # interpret our script (Defaults to bash). In this case, we take
+        # into account the possibility that the user may use either linux
+        # or windows.
+        interpreter = var.host_os == "windows" ? ["Powershell", "-Command"] : ["bash", "-c"]
     }
 
 }
